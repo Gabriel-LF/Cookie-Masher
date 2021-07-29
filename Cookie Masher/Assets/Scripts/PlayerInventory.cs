@@ -14,7 +14,7 @@ public class PlayerInventory : MonoBehaviour
 
     public float clickPower = 1;
 
-    public TextMeshProUGUI cookieText, currentName, inputName;
+    public TextMeshProUGUI cookieText, currentName, inputName, clickPowerText;
 
     private Vector3 mousePos, worldPos;
     public Camera cam;
@@ -34,6 +34,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void BakeCookie()
     {
+        clickPowerText.text = "+" + clickPower.ToString();
         cookies += clickPower;
 
         mousePos = Input.mousePosition;

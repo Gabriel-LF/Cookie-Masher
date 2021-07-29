@@ -17,6 +17,7 @@ public abstract class Building
     {
         button = GameObject.Find(Name + " Button");
         button.GetComponent<BuildingButton>().quantity++;
+        PlayerInventory.instance.cookies -= button.GetComponent<BuildingButton>().cost;
         button.GetComponent<BuildingButton>().cost += (Cost / 100) * 20;
         button.GetComponent<BuildingButton>().UpdateUI();
 

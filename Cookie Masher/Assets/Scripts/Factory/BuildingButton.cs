@@ -7,7 +7,7 @@ using TMPro;
 public class BuildingButton : MonoBehaviour
 {
     public Image icon;
-    public TextMeshProUGUI nameText, costText, quantityText;
+    public TextMeshProUGUI nameText, costText, quantityText, cpsText;
     public string buildingName;
     public float cost, cps;
     public int quantity;
@@ -29,6 +29,7 @@ public class BuildingButton : MonoBehaviour
         nameText.text = buildingName;
         costText.text = cost.ToString();
         quantityText.text = quantity.ToString();
+        cpsText.text = cps.ToString() + "CpS";
     }
 
     void Update()
