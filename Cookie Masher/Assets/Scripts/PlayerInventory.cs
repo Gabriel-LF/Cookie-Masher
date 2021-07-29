@@ -7,21 +7,22 @@ using System.Collections.Specialized;
 
 public class PlayerInventory : MonoBehaviour
 {
+    public static PlayerInventory instance;
+
     public float cookies;
     private int intCookie;
 
     public float clickPower = 1;
 
-    public TextMeshProUGUI cookieText;
+    public TextMeshProUGUI cookieText, currentName, inputName;
 
-    private Vector3 mousePos;
-    private Vector3 worldPos;
+    private Vector3 mousePos, worldPos;
     public Camera cam;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        instance = this;
     }
 
     // Update is called once per frame
@@ -39,5 +40,10 @@ public class PlayerInventory : MonoBehaviour
         mousePos.z = 1.5f;
         worldPos = cam.ScreenToWorldPoint(mousePos);
         ObjectPooler.Instance.SpawnFromPool("ClickParticle", worldPos, Quaternion.Euler(0, 0, 0));
+    }
+
+    public void NameChange()
+    {
+        currentName.text = inputName.text;
     }
 }
