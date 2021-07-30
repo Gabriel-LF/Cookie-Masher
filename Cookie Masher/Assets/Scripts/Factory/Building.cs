@@ -13,6 +13,7 @@ public abstract class Building
     public abstract float CPS { get; }
 
     public GameObject button;
+    public BuildsUI UI;
     public void Process() 
     {
         button = GameObject.Find(Name + " Button");
@@ -21,7 +22,8 @@ public abstract class Building
         button.GetComponent<BuildingButton>().cost += (Cost / 100) * 20;
         button.GetComponent<BuildingButton>().UpdateUI();
 
+        UI = GameObject.Find(Name + " UI").GetComponent<BuildsUI>();
         CookiesPerSecond.instance.UpdateCPS();
-        CookiesPerSecond.instance.UpdateVisuals(Name);
+        UI.UpdateVisuals();
     }
 }

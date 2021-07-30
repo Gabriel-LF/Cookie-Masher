@@ -8,11 +8,14 @@ public class SaveSystem : MonoBehaviour
     public CookiesPerSecond cps;
     public bool hasSaved = false;
 
+    public Transform buildTab;
+    public BuildsUI cookiesUI;
+
     // Start is called before the first frame update
     void Start()
     {
         hasSaved = PlayerPrefsX.GetBool("hasSaved");
-        if (hasSaved) { LoadGame(); }
+        if (hasSaved) { LoadGame();  }
         StartCoroutine(AutoSave());
     }
 
@@ -55,8 +58,12 @@ public class SaveSystem : MonoBehaviour
             upgrade.unlocked = PlayerPrefsX.GetBool(upgrade.upgradeName + "unlocked");
             upgrade.UpdateUI();
         }
+        foreach (Transform child in buildTab)
+        {
+            child.GetComponent<BuildsUI>().UpdateVisuals();
+        }
+        cookiesUI.UpdateVisuals();
         cps.UpdateCPS();
-        cps.UpdateVisuals("Start");
     }
 
     IEnumerator AutoSave()
@@ -85,8 +92,11 @@ public class SaveSystem : MonoBehaviour
             upgrade.gameObject.SetActive(true);
         }
         cps.UpdateCPS();
-        cps.UpdateVisuals("Start");
-
+        foreach (Transform child in buildTab)
+        {
+            child.GetComponent<BuildsUI>().UpdateVisuals();
+        }
+        cookiesUI.UpdateVisuals();
         SaveGame();
     }
 }
