@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ImportedStove : LeatherGlove
+public class ImportedStove : Upgrade
 {
     public override string Name => "Imported Stove";
     public override string Description => "Edu's Mom clones are TWICE as efficient";

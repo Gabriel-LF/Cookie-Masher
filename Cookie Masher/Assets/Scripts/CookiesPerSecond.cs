@@ -17,6 +17,12 @@ public class CookiesPerSecond : MonoBehaviour
     public List<GameObject> hands = new List<GameObject>();
     public List<GameObject> erikas = new List<GameObject>();
     public GameObject erikaBG;
+    public List<GameObject> farms = new List<GameObject>();
+    public GameObject farmBG;
+    public List<GameObject> mines = new List<GameObject>();
+    public GameObject mineBG;
+    public List<GameObject> factorys = new List<GameObject>();
+    public GameObject factoryBG;
 
     // Start is called before the first frame update
     void Start()
@@ -46,11 +52,17 @@ public class CookiesPerSecond : MonoBehaviour
     {
         BuildingButton handButton = GameObject.Find("Extra Hand Button").GetComponent<BuildingButton>();
         BuildingButton erikaButton = GameObject.Find("Edu's Mom Button").GetComponent<BuildingButton>();
+        BuildingButton farmButton = GameObject.Find("Bean Farm Button").GetComponent<BuildingButton>();
+        BuildingButton mineButton = GameObject.Find("Blocky Mine Button").GetComponent<BuildingButton>();
+        BuildingButton factoryButton = GameObject.Find("Evil Factory Button").GetComponent<BuildingButton>();
         switch (name)
         {
             case "Start":
 
-                if (erikaButton.quantity > 0) { erikaBG.SetActive(true); } else { erikaBG.SetActive(false); } 
+                if (erikaButton.quantity > 0) { erikaBG.SetActive(true); } else { erikaBG.SetActive(false); }
+                if (farmButton.quantity > 0) { farmBG.SetActive(true); } else { farmBG.SetActive(false); }
+                if (mineButton.quantity > 0) { mineBG.SetActive(true); } else { mineBG.SetActive(false); }
+                if (factoryButton.quantity > 0) { factoryBG.SetActive(true); } else { factoryBG.SetActive(false); }
 
                 int i = 0;
                 foreach(GameObject hand in hands)
@@ -68,12 +80,36 @@ public class CookiesPerSecond : MonoBehaviour
                     else { erika.SetActive(false); }
                     i++;
                 }
+                i = 0;
+                foreach (GameObject farm in farms)
+                {
+                    if (i < farmButton.quantity)
+                    { farm.SetActive(true); }
+                    else { farm.SetActive(false); }
+                    i++;
+                }
+                i = 0;
+                foreach (GameObject mine in mines)
+                {
+                    if (i < mineButton.quantity)
+                    { mine.SetActive(true); }
+                    else { mine.SetActive(false); }
+                    i++;
+                }
+                i = 0;
+                foreach (GameObject factory in factorys)
+                {
+                    if (i < factoryButton.quantity)
+                    { factory.SetActive(true); }
+                    else { factory.SetActive(false); }
+                    i++;
+                }
                 break;
             case "Extra Hand":
                 if(handButton.quantity <= hands.Count)
                 {
                     hands[handButton.quantity - 1].SetActive(true);
-                    hands[handButton.quantity - 1].transform.localRotation = Quaternion.Euler(0, 0, (buildings[0].quantity - 1) * 7.5f);
+                    hands[handButton.quantity - 1].transform.localRotation = Quaternion.Euler(0, 0, (handButton.quantity - 1) * 7.5f);
                 }
                 break;
             case "Edu's Mom":
@@ -81,6 +117,27 @@ public class CookiesPerSecond : MonoBehaviour
                 {
                     erikas[erikaButton.quantity - 1].SetActive(true);
                     erikaBG.SetActive(true);
+                }
+                break;
+            case "Bean Farm":
+                if (farmButton.quantity <= farms.Count)
+                {
+                    farms[farmButton.quantity - 1].SetActive(true);
+                    farmBG.SetActive(true);
+                }
+                break;
+            case "Blocky Mine":
+                if (mineButton.quantity <= mines.Count)
+                {
+                    mines[mineButton.quantity - 1].SetActive(true);
+                    mineBG.SetActive(true);
+                }
+                break;
+            case "Evil Factory":
+                if (factoryButton.quantity <= factorys.Count)
+                {
+                    factorys[factoryButton.quantity - 1].SetActive(true);
+                    factoryBG.SetActive(true);
                 }
                 break;
             default:

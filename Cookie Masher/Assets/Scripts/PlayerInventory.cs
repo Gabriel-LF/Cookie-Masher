@@ -13,6 +13,8 @@ public class PlayerInventory : MonoBehaviour
     private int intCookie;
 
     public float clickPower = 1;
+    public int rollingPins = 0;
+    private float pinPower;
 
     public TextMeshProUGUI cookieText, currentName, inputName, clickPowerText;
 
@@ -34,8 +36,10 @@ public class PlayerInventory : MonoBehaviour
 
     public void BakeCookie()
     {
-        clickPowerText.text = "+" + clickPower.ToString();
-        cookies += clickPower;
+        pinPower = (CookiesPerSecond.instance.cps / 100) * rollingPins;
+
+        clickPowerText.text = "+" + (clickPower + pinPower).ToString();
+        cookies += clickPower + pinPower;
 
         mousePos = Input.mousePosition;
         mousePos.z = 1.5f;

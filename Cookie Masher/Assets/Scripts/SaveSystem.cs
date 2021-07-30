@@ -23,6 +23,7 @@ public class SaveSystem : MonoBehaviour
 
         PlayerPrefs.SetFloat("Cookies", pi.cookies);
         PlayerPrefs.SetFloat("clickPower", pi.clickPower);
+        PlayerPrefs.SetInt("rollingPins", pi.rollingPins);
         PlayerPrefs.SetString("Name", pi.currentName.text);
         foreach (BuildingButton build in cps.buildings)
         {
@@ -40,6 +41,7 @@ public class SaveSystem : MonoBehaviour
     {
         pi.cookies = PlayerPrefs.GetFloat("Cookies");
         pi.clickPower = PlayerPrefs.GetFloat("clickPower");
+        pi.rollingPins = PlayerPrefs.GetInt("rollingPins");
         pi.currentName.text = PlayerPrefs.GetString("Name"); if(pi.currentName.text == null) pi.currentName.text = "My Bakery";
         foreach (BuildingButton build in cps.buildings)
         {
@@ -68,6 +70,7 @@ public class SaveSystem : MonoBehaviour
     {
         pi.cookies = 0;
         pi.clickPower = 1;
+        pi.rollingPins = 0;
         pi.currentName.text = "My Bakery";
         foreach (BuildingButton build in cps.buildings)
         {
